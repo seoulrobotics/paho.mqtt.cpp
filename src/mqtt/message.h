@@ -32,6 +32,11 @@
 #include "mqtt/platform.h"
 #include <memory>
 
+namespace {
+static const mqtt::string EMPTY_STR;
+static const mqtt::binary EMPTY_BIN;
+}
+
 namespace mqtt {
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,9 +252,8 @@ public:
 	 * Gets the topic for the message.
 	 * @return The topic string for the message.
 	 */
-	const string& get_topic() const { 
-		static const string EMPTY_STR;
-		return topic_ ? topic_.str() : EMPTY_STR; 
+	const string& get_topic() const {
+		return topic_ ? topic_.str() : EMPTY_STR;
 	}
 	/**
 	 * Clears the payload, resetting it to be empty.
@@ -263,14 +267,12 @@ public:
 	 * Gets the payload
 	 */
 	const binary& get_payload() const {
-		static const binary EMPTY_BIN;
-		return payload_ ? payload_.str() : EMPTY_BIN; 
+		return payload_ ? payload_.str() : EMPTY_BIN;
 	}
 	/**
 	 * Gets the payload as a string
 	 */
 	const string& get_payload_str() const {
-		static const string EMPTY_STR;
 		return payload_ ? payload_.str() : EMPTY_STR;
 	}
 	/**
